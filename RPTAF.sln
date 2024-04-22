@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPTest", "RPTest\RPTest.csproj", "{D51234F7-4FE0-449B-9E84-A9712B17DA33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPFramework", "RPFramework\RPFramework.csproj", "{E042A7AA-20FB-44D9-9EEE-9B904A27458B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPSFTest", "RPSFTest\RPSFTest.csproj", "{4FEFACC8-DE64-42C4-AC94-890868E5F070}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D51234F7-4FE0-449B-9E84-A9712B17DA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51234F7-4FE0-449B-9E84-A9712B17DA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51234F7-4FE0-449B-9E84-A9712B17DA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51234F7-4FE0-449B-9E84-A9712B17DA33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E042A7AA-20FB-44D9-9EEE-9B904A27458B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E042A7AA-20FB-44D9-9EEE-9B904A27458B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E042A7AA-20FB-44D9-9EEE-9B904A27458B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E042A7AA-20FB-44D9-9EEE-9B904A27458B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FEFACC8-DE64-42C4-AC94-890868E5F070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FEFACC8-DE64-42C4-AC94-890868E5F070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FEFACC8-DE64-42C4-AC94-890868E5F070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FEFACC8-DE64-42C4-AC94-890868E5F070}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {133B4B6B-FFC8-4E19-A547-0F5E429CFD0A}
+	EndGlobalSection
+EndGlobal

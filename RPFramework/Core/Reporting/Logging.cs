@@ -13,9 +13,9 @@ namespace RPFramework.Core.Reporting
             _idefaultVariables = idefaultVariables;
             _loggingLevelSwitch = new LoggingLevelSwitch(Serilog.Events.LogEventLevel.Debug);
             Log.Logger = new LoggerConfiguration().MinimumLevel.ControlledBy(_loggingLevelSwitch)
-                .WriteTo.File(_idefaultVariables.Log
-                , outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:1j}{NewLine}{Exception}")
-                .Enrich.WithThreadId().CreateLogger();
+                .WriteTo.Map("{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:1j}{NewLine}{Exception}",
+                (name, wt) => wt.File(_idefaultVariables.Log))
+                .CreateLogger();
         }
 
         public void SetLogLevel(string loglevel)

@@ -1,9 +1,6 @@
-﻿using Serilog.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RPFramework.Core.Config;
+using Serilog;
+using Serilog.Core;
 
 namespace RPFramework.Core.Reporting
 {

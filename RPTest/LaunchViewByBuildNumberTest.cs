@@ -2,6 +2,7 @@
 
 namespace RPTest
 {
+    [Collection("Test Collection 2")]
     public class LaunchViewByBuildNumberTest
     {
         private readonly IHomePage _ihomePage;

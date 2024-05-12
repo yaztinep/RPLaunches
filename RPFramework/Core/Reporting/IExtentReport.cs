@@ -6,6 +6,5 @@ namespace RPFramework.Core.Reporting
     {
         void FlushExtentReport();
         ExtentReports GetExtentReports();
-        void InitiliazeExtentReport();
     }
 }

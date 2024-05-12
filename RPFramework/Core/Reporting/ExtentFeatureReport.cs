@@ -1,4 +1,8 @@
-﻿using AventStack.ExtentReports;
+﻿using TechTalk.SpecFlow.Bindings;
+using AventStack.ExtentReports.Model;
+using RPFramework.Core.Driver;
+using System.Text.RegularExpressions;
+using TechTalk.SpecFlow;
 
 namespace RPFramework.Core.Reporting
 {
@@ -24,41 +28,54 @@ namespace RPFramework.Core.Reporting
             _scenario = _feature.CreateNode(scenario);
         }
 
-        public void AddStepInformation(string message, Status status, string base64)
+        public void CreateFailScenario(string scenario,string failure, IDriverFixture driverFixture, string file)
         {
-            if (base64 == null)
+            _scenario = _feature.CreateNode(scenario).Fail(failure, new ScreenCapture()
             {
-                _scenario.Log(status, message);
+                Path = driverFixture.TakeScreenshotAsPath(file) ,
+                Title ="Error screenshot"
+            });
+        }
+
+        public void AddStepInformation(string feature, ScenarioContext scenario, Exception error, IDriverFixture driverFixture)
+        {
+            var fileName =
+                $"{feature.Trim()}_{Regex.Replace(scenario.ScenarioInfo.Title, @"\s", "")}";
+            if (error == null)
+            {
+                switch (scenario.StepContext.StepInfo.StepDefinitionType)
+                {
+                    case StepDefinitionType.Given:
+                        CreateScenario(scenario.StepContext.StepInfo.Text);
+                        break;
+                    case StepDefinitionType.When:
+                       CreateScenario(scenario.StepContext.StepInfo.Text);
+                        break;
+                    case StepDefinitionType.Then:
+                        CreateScenario(scenario.StepContext.StepInfo.Text);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
             else
             {
-                _scenario.Log(status, message, MediaEntityBuilder.CreateScreenCaptureFromBase64String(base64).Build());
+                switch (scenario.StepContext.StepInfo.StepDefinitionType)
+                {
+                    case StepDefinitionType.Given:
+                       CreateFailScenario(scenario.StepContext.StepInfo.Text, scenario.TestError.Message, driverFixture, fileName);
+                        break;
+                    case StepDefinitionType.When:
+                       CreateFailScenario(scenario.StepContext.StepInfo.Text, scenario.TestError.Message, driverFixture, fileName);
+                        break;
+                    case StepDefinitionType.Then:
+                        CreateFailScenario(scenario.StepContext.StepInfo.Text, scenario.TestError.Message, driverFixture, fileName);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             }
         }
 
-        public void Pass(string message, string base64)
-        {
-            AddStepInformation(message, Status.Pass, base64);
-        }
-
-        public void Error(string message, string base64)
-        {
-            AddStepInformation(message, Status.Error, base64);
-        }
-
-        public void Information(string message, string base64)
-        {
-            AddStepInformation(message, Status.Info, base64);
-        }
-
-        public void Warning(string message, string base64)
-        {
-            AddStepInformation(message, Status.Warning, base64);
-        }
-
-        public void Fail(string message, string base64)
-        {
-            AddStepInformation(message, Status.Fail, base64);
-        }
     }
 }

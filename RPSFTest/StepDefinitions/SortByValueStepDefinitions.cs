@@ -34,6 +34,7 @@ namespace RPSFTest.StepDefinitions
         public void GivenIGoToTheLaunchesPage()
         {
             _ihomePage.LaunchesDisplayed();
+            _ihomePage.ClickLaunches();
         }
 
         [When(@"I filter by value")]

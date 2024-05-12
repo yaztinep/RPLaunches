@@ -7,15 +7,13 @@ namespace RPFramework.Core.Reporting
     public class ExtentReport : IExtentReport
     {
         public static ExtentReports _extentReports;
+       
+
         public ExtentReport()
         {
-            
-        }
-
-        public void InitiliazeExtentReport()
-        {
             var extentReport =
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/extentreport.html";
+                System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory + "../../../").FullName + @"\Results\Reports"
+                 + DateTime.Now.ToString("yyyyMMdd hhmmss") + "/extentreport.html";
             _extentReports = new ExtentReports();
             var spark = new ExtentSparkReporter(extentReport);
             _extentReports.AttachReporter(spark);

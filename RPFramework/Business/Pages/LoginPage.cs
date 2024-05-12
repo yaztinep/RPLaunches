@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using RPFramework.Business.Extensions;
 using RPFramework.Core.Driver;
 
 namespace RPFramework.Business.Pages
@@ -22,8 +23,8 @@ namespace RPFramework.Business.Pages
 
         public void Login(string username, string password)
         {
-            /*loginInput.SendText(username);
-            passwordInput.SendText(password);*/
+            loginInput.SendText(username);
+            passwordInput.SendText(password);
             loginButton.Click();
         }
 

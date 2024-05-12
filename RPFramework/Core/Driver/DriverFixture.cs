@@ -5,6 +5,8 @@ using OpenQA.Selenium;
 using RPFramework.Core.Config;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Safari;
+using OpenQA.Selenium.Support.Extensions;
+using System.Reflection;
 
 namespace RPFramework.Core.Driver
 {
@@ -43,6 +45,14 @@ namespace RPFramework.Core.Driver
                 BrowserType.Safari => new RemoteWebDriver(_testSettings.GridUri, new SafariOptions()),
                 _ => new RemoteWebDriver(_testSettings.GridUri, new ChromeOptions())
             };
+        }
+
+        public string TakeScreenshotAsPath(string fileName)
+        {
+            var screenshot = Driver.TakeScreenshot();
+            var path = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}//{fileName}.png";
+            screenshot.SaveAsFile(path);
+            return path;
         }
 
         public void Dispose()

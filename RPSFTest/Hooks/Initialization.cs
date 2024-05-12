@@ -1,8 +1,5 @@
-﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Gherkin.Model;
-using TechTalk.SpecFlow.Bindings;
-using RPFramework.Core.Reporting;
-using System.Reflection;
+﻿using RPFramework.Core.Reporting;
+using RPFramework.Core.Driver;
 
 namespace RPSFTest.Hooks
 {
@@ -13,19 +10,21 @@ namespace RPSFTest.Hooks
         private readonly FeatureContext _featureContext;
         public static IExtentReport _iextentReport;
         public static IExtentFeatureReport _iextentFeatureReport;
+        private readonly IDriverFixture _driverFixture;
 
-        public Initialization(ScenarioContext scenarioContext, FeatureContext featureContext, IExtentReport iextentReport, IExtentFeatureReport iextentFeatureReport)
+        public Initialization(ScenarioContext scenarioContext, FeatureContext featureContext, IExtentReport iextentReport, IExtentFeatureReport iextentFeatureReport,IDriverFixture idriverFixture)
         {
             _scenarioContext = scenarioContext;
             _featureContext = featureContext;
             _iextentReport = iextentReport;
             _iextentFeatureReport = iextentFeatureReport;
+            _driverFixture = idriverFixture;
         }
 
         [BeforeTestRun] 
         public static void InitializeExtentReport()
         {
-            _iextentReport.InitiliazeExtentReport();
+
         }
 
         [BeforeScenario]
@@ -37,22 +36,9 @@ namespace RPSFTest.Hooks
         }
 
         [AfterStep]
-        public void AfterStep() 
+        public void AfterStep()
         {
-            switch (_scenarioContext.StepContext.StepInfo.StepDefinitionType)
-            {
-                case StepDefinitionType.Given:
-                    _iextentFeatureReport.CreateScenario(_scenarioContext.StepContext.StepInfo.Text);
-                    break;
-                case StepDefinitionType.When:
-                    _iextentFeatureReport.CreateScenario(_scenarioContext.StepContext.StepInfo.Text);
-                    break;
-                case StepDefinitionType.Then:
-                    _iextentFeatureReport.CreateScenario(_scenarioContext.StepContext.StepInfo.Text);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            _iextentFeatureReport.AddStepInformation(_featureContext.FeatureInfo.Title, _scenarioContext, _scenarioContext.TestError, _driverFixture);
         }
 
         [AfterTestRun]

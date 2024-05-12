@@ -1,7 +1,9 @@
 using RPFramework.Business.Pages;
+//[assembly: CollectionBehavior(DisableTestParallelization = false)]
 
 namespace RPTest
 {
+    [Collection("Test Collection")]
     public class SortByValueTest
     {
         private readonly IHomePage _ihomePage;
@@ -15,7 +17,17 @@ namespace RPTest
             _ilaunchesPage = ilaunchesPage;
         }
 
+        public static IEnumerable<object[]> SortValues()
+        {
+            yield return new object[] { "Launch name" };
+            yield return new object[] { "Total" };
+            yield return new object[] { "Product Bug" };
+            yield return new object[] { "Passed" };
+            yield return new object[] { "Failed" };
+        }
+
         [Theory]
+        //[MemberData(nameof(SortValues))] 
         [InlineData("Launch name")]
         [InlineData("Total")]
         [InlineData("Product Bug")]

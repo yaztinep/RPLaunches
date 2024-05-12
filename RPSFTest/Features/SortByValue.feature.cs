@@ -112,12 +112,12 @@ this.ScenarioInitialize(scenarioInfo);
                             "username",
                             "password"});
                 table6.AddRow(new string[] {
-                            "default",
-                            "1q2w3e"});
+                            "superadmin",
+                            "MyPassword"});
 #line 6
  testRunner.Given("I login with the following credentials", ((string)(null)), table6, "Given ");
 #line hidden
-#line 9
+#line 10
  testRunner.And("I go to the launches page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
@@ -132,10 +132,10 @@ this.ScenarioInitialize(scenarioInfo);
                             "Passed"});
                 table7.AddRow(new string[] {
                             "Failed"});
-#line 10
+#line 11
  testRunner.When("I filter by value", ((string)(null)), table7, "When ");
 #line hidden
-#line 18
+#line 19
  testRunner.Then("I should see the launches based on the value", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

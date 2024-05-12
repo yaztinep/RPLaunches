@@ -18,7 +18,7 @@ namespace RPFramework.Business.Pages
             _idriverWait = idriverWait;
         }
 
-        private IWebElement launchesLink => _idriverWait.FindElement(By.CssSelector("a[href='#default_personal/launches']"));
+        private IWebElement launchesLink => _idriverWait.FindElement(By.CssSelector("a[href='#default_personal/launches'], a[href='#superadmin_personal/launches'], a[href='#automation/launches']"));
 
         public void ClickLaunches()
         {
